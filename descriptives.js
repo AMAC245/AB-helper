@@ -33,7 +33,7 @@ const mean = sample => {
 }
 
 
-// ::facotry function that returns the descriptive stats for a given sample::
+// ::factory function that returns the descriptive stats for a given sample::
 
 const descriptives = sample => {
     return {

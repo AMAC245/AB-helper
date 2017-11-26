@@ -36,6 +36,11 @@ const mean = sample => {
 // ::factory function that returns the descriptive stats for a given sample::
 
 const descriptives = sample => {
+    
+    if (Object.prototype.toString.call(sample) !== '[object Array]') {
+        throw new Error ('samples must be an array')
+    }
+    
     return {
         population: sample.length,
         mean: mean(sample),

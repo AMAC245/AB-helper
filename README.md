@@ -10,3 +10,8 @@
 ```
 
 Compares the means of two independent samples (control, treatment) and runs the appropraite t-test. It will return a boolean of whether a statistically significant result is detected.
+
+## Under the hood
+- Analyses the variance of your two samples (equal or unequal) 
+- degrees of freedom(df)
+- compares f-critcal value for f-statistic  

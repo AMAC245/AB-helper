@@ -1,7 +1,7 @@
 # AB-helper
 
 
-### Perform quick preliminary A/B comparisions 
+#### This factory function provides a quick and easy reference to the important descriptives statistics of a given sample to be used in further analyses
 ```
 
    npm install compare 

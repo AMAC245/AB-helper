@@ -39,11 +39,12 @@ const descriptives = sample => {
     return {
         population: sample.length,
         mean: mean(sample),
-        sd: sd(sample)
+        sd: sd(sample),
+        variances: f_statistic(control,treatment)
     }
 }
 
-// ::SAMPLE STANDARD DEVIATION::
+// ::sample standard deviation::
 const sd = sample => {
     
     const calculateIndex = sample.map(index => {
@@ -56,17 +57,21 @@ const sd = sample => {
 }
 
 // determines whether the two sample variances are equal or not
-const f_statistic = (control, treatment) => {
-    const crit_value = 2.25; 
+const f_statistic = (control, treatment) => { 
+    if( arguments.length === 2 ) {
+        const crit_value = 2.25; 
   
-    const f_stat = 
-          return sd(control) > sd(treatment)
-            ? sd(control) / sd(treatment)
-            : sd(treatment) / sd(control)
+        const f_stat = 
+             return sd(control) > sd(treatment)
+                ? sd(control) / sd(treatment)
+                : sd(treatment) / sd(control)
     
-    return f_stat > crit_value 
-            ? 'unequal' 
-            : 'equal'
+         return f_stat > crit_value 
+                ? 'unequal' 
+                : 'equal'
+    } else {
+        return 'not applicable - only required with two samples'
+    }
 }
 
 if (f_statistic === 'unequal' ) {

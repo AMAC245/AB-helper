@@ -1,4 +1,4 @@
-# AB-tester
+# AB-helper
 
 
 ### Perform quick preliminary A/B comparisions 

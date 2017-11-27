@@ -19,8 +19,7 @@ const descriptives = sample => {
     return {
         population: sample.length,
         mean: mean(sample),
-        sd: sd(sample),
-        variances: f_statistic(control,treatment)
+        sd: sd(sample)
     }
 }
 

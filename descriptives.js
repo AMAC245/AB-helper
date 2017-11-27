@@ -1,4 +1,4 @@
-// :::higher-orders::: 
+// higher-orders
 const sum = sample => {
     return sample.reduce((prev, curr) => curr += prev);
 };
@@ -8,7 +8,7 @@ const mean = sample => {
 }
 
 
-// ::factory function that returns the descriptive stats for a given sample::
+// factory function that returns the descriptive stats for a given sample
 
 const descriptives = sample => {
     
@@ -23,7 +23,7 @@ const descriptives = sample => {
     }
 }
 
-// ::sample standard deviation::
+// sample standard deviation
 const sd = sample => {
     
     const calculateIndex = sample.map(index => {
@@ -56,4 +56,19 @@ const f_statistic = (control, treatment) => {
 if (f_statistic === 'unequal' ) {
     (descriptives(control).mean - descriptives(treatment).mean)
 }    
+
+
+// effect size 
+if ( twoSample === true ) {
+    const sd_pooled = (control, treatment) => {
+        const val = ( sd(control)**2 + sd(treatment)**2 ) / 2
+        return Math.sqrt(val)
+    }
+
+    const effect_size = () => {
+        return (mean(treatment) - mean(control)) / sd_pooled
+    }
+}
+    
+    
 export default descriptives

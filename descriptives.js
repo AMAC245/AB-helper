@@ -19,7 +19,8 @@ const descriptives = sample => {
     return {
         population: sample.length,
         mean: mean(sample),
-        sd: sd(sample)
+        sd: sd(sample),
+        df: population - 1
     }
 }
 
@@ -38,8 +39,16 @@ const sd = sample => {
 // determines whether the two sample variances are equal or not
 const f_statistic = (control, treatment) => { 
     if( arguments.length === 2 ) {
-        const crit_value = 2.25; 
-  
+        
+        
+        
+        const dfx = control.length -1
+        const dfy = treatment.length -1 
+        
+        const key = [dfx, dfy]
+        const crit_value = f_table[key] 
+        
+       
         const f_stat = 
              return sd(control) > sd(treatment)
                 ? sd(control) / sd(treatment)
@@ -51,6 +60,7 @@ const f_statistic = (control, treatment) => {
     } else {
         return 'not applicable - only required with two samples'
     }
+    
 }
 
 if (f_statistic === 'unequal' ) {

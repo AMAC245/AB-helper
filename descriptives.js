@@ -3,15 +3,14 @@ const sum = sample => {
     return sample.reduce((prev, curr) => curr += prev);
 };
 
-const mean = sample => {
-    return sum(sample) / sample.length
-}
+//parseFloat for testing
+const mean = sample => sum(sample) / sample.length
 
 
 // factory function that returns the descriptive stats for a given sample
 
 const descriptives = sample => {
-    
+   // if (!Array.isArray(sample))
     if (Object.prototype.toString.call(sample) !== '[object Array]') {
         throw new Error ('samples must be an array')
     }
@@ -82,3 +81,38 @@ if ( twoSample === true ) {
     
     
 export default descriptives
+
+
+
+/* Although this works, string conversion may be susceptible to bugs:
+
+function f_crit() {
+    const f = f_stat.toString()
+    if (keys.includes(result)) {
+        const key = keys.indexOf(f)
+        return values[key]
+    } 
+}
+*/
+
+// Determines whether the samples are equal or unequal
+// Deep comparison that checks the dataset and returns the correct value from f-table
+const variance = (control, treatment) => {
+    const dfx = 2
+    const dfy = 3
+        
+    const index = keys.findIndex((value, key) => {
+        if ( value[0] === dfx && 
+             value[1] === dfy ) {
+            return key
+        } 
+    });
+    
+    return f_stat > values[index] 
+         ? descriptives.variance = 'unequal' 
+         : descriptives.variance = 'equal'    
+}
+console.log(variance())
+// it must get each samples df
+// needs to round df samples to closest
+// if greater than 1000, return static 

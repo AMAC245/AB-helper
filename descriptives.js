@@ -116,3 +116,64 @@ console.log(variance())
 // it must get each samples df
 // needs to round df samples to closest
 // if greater than 1000, return static 
+
+
+
+
+
+
+
+const compare = (control, treatment) => {
+    
+    const f_stat = sd(control) > sd(treatment)
+       ? sd(control) / sd(treatment) 
+       : sd(treatment) / sd(control) 
+   
+    control.df = descriptives(control).df
+    treatment.df = descriptives(treatment).df
+    
+    const index = keys.findIndex((value, key) => {
+        if (value[0] === control.df && 
+            value[1] === treatment.df) {
+                return key
+        }
+    })
+
+    return f_stat < values[index]
+        ? descriptives.variance = 'equal'
+        : descriptives.variance = 'unequal'
+
+}
+console.log(compare(pup,ando))
+
+
+
+
+
+const compare = (control, treatment) => {
+
+
+
+    const f_test = (control, treatment) => {
+        const f_stat = sd(control) > sd(treatment)
+            ? sd(control) / sd(treatment) 
+            : sd(treatment) / sd(control) 
+    
+        control.df = descriptives(control).df
+        treatment.df = descriptives(treatment).df
+        
+        const index = keys.findIndex((value, key) => {
+            if (value[0] === control.df && 
+                value[1] === treatment.df) {
+                    return key
+            }
+        })
+            
+        return f_stat < values[index]
+            ? descriptives.variance = 'equal'
+            : descriptives.variance = 'unequal'
+    }
+    
+
+    return f_test(control, treatment)
+}

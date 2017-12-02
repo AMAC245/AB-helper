@@ -98,12 +98,12 @@ function f_crit() {
 // Determines whether the samples are equal or unequal
 // Deep comparison that checks the dataset and returns the correct value from f-table
 const variance = (control, treatment) => {
-    const dfx = 2
-    const dfy = 3
+    const df_control = 2
+    const df_treatment = 3
         
     const index = keys.findIndex((value, key) => {
-        if ( value[0] === dfx && 
-             value[1] === dfy ) {
+        if ( value[0] === df_control && 
+             value[1] === df_treatment ) {
             return key
         } 
     });

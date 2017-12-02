@@ -9,7 +9,7 @@ const mean = sample => sum(sample) / sample.length
 
 // factory function that returns the descriptive stats for a given sample
 
-const descriptives = sample => {
+const descriptives = (control, treatment) => {
    // if (!Array.isArray(sample))
     if (Object.prototype.toString.call(sample) !== '[object Array]') {
         throw new Error ('samples must be an array')

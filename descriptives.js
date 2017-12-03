@@ -121,7 +121,7 @@ console.log(variance())
 
 
 
-const compare = (control, treatment) => {
+const compare = (ctrl, trtmt) => {
 
 
     const f_test = (ctrl, trtmt) => {
@@ -133,8 +133,8 @@ const compare = (control, treatment) => {
         trtmt.df = descriptives(trtmt).df
         
         const index = keys.findIndex((value, key) => {
-            if (value[0] === control.df && 
-                value[1] === treatment.df) {
+            if (value[0] === ctrl.df && 
+                value[1] === trtmt.df) {
                     return key
             }
         })

@@ -134,7 +134,7 @@ const compare = (ctrl, trtmt) => {
         
         const index = keys.findIndex((value, key) => {
             if (value[0] === ctrl.df && value[1] === trtmt.df) {
-                    return key
+                return key
             }
         })
             

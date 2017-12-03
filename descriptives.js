@@ -133,8 +133,7 @@ const compare = (ctrl, trtmt) => {
         trtmt.df = descriptives(trtmt).df
         
         const index = keys.findIndex((value, key) => {
-            if (value[0] === ctrl.df && 
-                value[1] === trtmt.df) {
+            if (value[0] === ctrl.df && value[1] === trtmt.df) {
                     return key
             }
         })

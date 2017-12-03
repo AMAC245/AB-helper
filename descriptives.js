@@ -19,7 +19,7 @@ const descriptives = (control, treatment) => {
         population: sample.length,
         mean: mean(sample),
         sd: sd(sample),
-        df: population - 1
+        df: sample.length - 1
     }
 }
 

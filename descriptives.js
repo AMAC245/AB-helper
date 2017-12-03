@@ -121,46 +121,16 @@ console.log(variance())
 
 
 
-
-
-const compare = (control, treatment) => {
-    
-    const f_stat = sd(control) > sd(treatment)
-       ? sd(control) / sd(treatment) 
-       : sd(treatment) / sd(control) 
-   
-    control.df = descriptives(control).df
-    treatment.df = descriptives(treatment).df
-    
-    const index = keys.findIndex((value, key) => {
-        if (value[0] === control.df && 
-            value[1] === treatment.df) {
-                return key
-        }
-    })
-
-    return f_stat < values[index]
-        ? descriptives.variance = 'equal'
-        : descriptives.variance = 'unequal'
-
-}
-console.log(compare(pup,ando))
-
-
-
-
-
 const compare = (control, treatment) => {
 
 
-
-    const f_test = (control, treatment) => {
-        const f_stat = sd(control) > sd(treatment)
-            ? sd(control) / sd(treatment) 
-            : sd(treatment) / sd(control) 
+    const f_test = (ctrl, trtmt) => {
+        const f_stat = sd(ctrl) > sd(trtmt)
+            ? sd(ctrl) / sd(trtmt) 
+            : sd(trtmt) / sd(ctrl) 
     
-        control.df = descriptives(control).df
-        treatment.df = descriptives(treatment).df
+        ctrl.df = descriptives(ctrl).df
+        trtmt.df = descriptives(trtmt).df
         
         const index = keys.findIndex((value, key) => {
             if (value[0] === control.df && 
@@ -175,5 +145,5 @@ const compare = (control, treatment) => {
     }
     
 
-    return f_test(control, treatment)
+    return f_test(ctrl, trtmt)
 }

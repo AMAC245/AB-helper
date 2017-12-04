@@ -174,3 +174,32 @@ const t_test = (control, treatment) => {
     
 }
 t_test(control, treatment)
+
+
+
+//working variance equation
+const variance = sample => {
+    const conversion = sum(sample) ** 2 / sample.length
+    const indices = sample.map(value => value ** 2)
+    
+    return (sum(indices) - conversion) / (sample.length -1)
+}
+
+
+
+
+
+const t_test = (ctrl, trtmt) => {
+    const sd_util = sample => {
+        return variance(sample) / descriptives(sample).population
+    }
+
+    const t_stat = (mean(ctrl) - mean(trtmt)) / 
+                   (Math.sqrt(sd_util(ctrl) + sd_util(trtmt)))
+
+    const _df = (sd_util(ctrl) + sd_util(trtmt)) ** 2 /
+                (((sd_util(ctrl) ** 2) / descriptives(ctrl).df) +
+                ((sd_util(trtmt) ** 2) / descriptives(trtmt).df))
+    
+    return Math.round(_df)
+}

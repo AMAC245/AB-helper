@@ -187,8 +187,6 @@ const variance = sample => {
 
 
 
-
-
 const t_test = (ctrl, trtmt) => {
     const sd_util = sample => {
         return variance(sample) / descriptives(sample).population
@@ -197,9 +195,12 @@ const t_test = (ctrl, trtmt) => {
     const t_stat = (mean(ctrl) - mean(trtmt)) / 
                    (Math.sqrt(sd_util(ctrl) + sd_util(trtmt)))
 
-    const _df = (sd_util(ctrl) + sd_util(trtmt)) ** 2 /
+    const _df = Math.round((sd_util(ctrl) + sd_util(trtmt)) ** 2 /
                 (((sd_util(ctrl) ** 2) / descriptives(ctrl).df) +
-                ((sd_util(trtmt) ** 2) / descriptives(trtmt).df))
+                ((sd_util(trtmt) ** 2) / descriptives(trtmt).df)))
     
-    return Math.round(_df)
+    return t_stat < t_table[_df]
+        ? false + ' accept null'
+        : true + ' reject null'
 }
+

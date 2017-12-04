@@ -149,3 +149,28 @@ const compare = (ctrl, trtmt) => {
 
     return f_test(ctrl, trtmt)
 }
+
+
+
+
+
+const t_test = (control, treatment) => {
+
+    const t_stat = () => {
+        const mean_diff = mean(control) - mean(treatment)
+        const sd_util = (sample) => sd(sample) / descriptives(sample).population
+        
+        let sd_diff = sd_util(control) + sd_util(treatment)
+        
+        // Catches if negative number and converts
+        if (sd_diff < 0) {
+            sd_diff = Math.abs(sd_diff)
+        }
+
+        return mean_diff - Math.sqrt(sd_diff)
+    }
+    
+    return t_stat()
+    
+}
+t_test(control, treatment)

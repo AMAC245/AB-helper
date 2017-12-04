@@ -23,3 +23,6 @@ const compare = (control, treatment) => ({
     significance: unequal_t_test(control, treatment)
 })
 console.log(compare(x,y))
+
+
+// ADD ERROR HANDLERS FOR T_TABLE _df over 120

@@ -1,6 +1,6 @@
 const { descriptives, variance, x, y } = require('./descriptives');
 const { sum, mean } = require('./utils/higher-orders');
-const t_table = require('./t_test');
+const t_table = require('./t_table');
 
 const unequal_t_test = (ctrl, trtmt) => {
     const sd_util = sample => {

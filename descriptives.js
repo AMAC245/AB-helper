@@ -132,14 +132,16 @@ const compare = (ctrl, trtmt) => {
         ctrl.df = descriptives(ctrl).df
         trtmt.df = descriptives(trtmt).df
         
-        const deepIndex = keys.findIndex((value, key) => {
-            if (value[0] === ctrl.df && 
-                value[1] === trtmt.df) {
+        const index = keys.findIndex((value, key) => {
+            if (
+              value[0] === ctrl.df && 
+              value[1] === trtmt.df
+            ) {
                 return key
             }
         })
             
-        return f_stat < values[deepIndex]
+        return f_stat < values[index]
             ? descriptives.variance = 'equal'
             : descriptives.variance = 'unequal'
     }

@@ -14,15 +14,14 @@ const unequal_t_test = (ctrl, trtmt) => {
                 (((sd_util(ctrl) ** 2) / descriptives(ctrl).df) +
                 ((sd_util(trtmt) ** 2) / descriptives(trtmt).df)))
     
-    return t_stat < t_table[_df]
-        ? false 
-        : true
+    return t_stat > t_table[_df]
+        ? compare.significance = true
+        : compare.significance = false
 }
 
 const compare = (control, treatment) => ({
     significance: unequal_t_test(control, treatment)
 })
 console.log(compare(x,y))
-
 
 // ADD ERROR HANDLERS FOR T_TABLE _df over 120

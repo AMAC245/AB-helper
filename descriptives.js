@@ -12,7 +12,7 @@ const mean = sample => sum(sample) / sample.length
 const descriptives = (control, treatment) => {
    // if (!Array.isArray(sample))
     if (Object.prototype.toString.call(sample) !== '[object Array]') {
-        throw new Error ('samples must be an array')
+        throw new Error ('Expected sample to be an array')
     }
     
     return {
@@ -35,36 +35,8 @@ const sd = sample => {
     return Math.sqrt(sampleVariance)
 }
 
-// determines whether the two sample variances are equal or not
-const f_statistic = (control, treatment) => { 
-    if( arguments.length === 2 ) {
-        
-        
-        
-        const dfx = control.length -1
-        const dfy = treatment.length -1 
-        
-        const key = [dfx, dfy]
-        const crit_value = f_table[key] 
-        
-       
-        const f_stat = 
-             return sd(control) > sd(treatment)
-                ? sd(control) / sd(treatment)
-                : sd(treatment) / sd(control)
-    
-         return f_stat > crit_value 
-                ? 'unequal' 
-                : 'equal'
-    } else {
-        return 'not applicable - only required with two samples'
-    }
-    
-}
 
-if (f_statistic === 'unequal' ) {
-    (descriptives(control).mean - descriptives(treatment).mean)
-}    
+ 
 
 
 // effect size 
@@ -78,52 +50,15 @@ if ( twoSample === true ) {
         return (mean(treatment) - mean(control)) / sd_pooled
     }
 }
-    
-    
+      
 export default descriptives
 
 
-
-/* Although this works, string conversion may be susceptible to bugs:
-
-function f_crit() {
-    const f = f_stat.toString()
-    if (keys.includes(result)) {
-        const key = keys.indexOf(f)
-        return values[key]
-    } 
-}
-*/
-
 // Determines whether the samples are equal or unequal
-// Deep comparison that checks the dataset and returns the correct value from f-table
-const variance = (control, treatment) => {
-    const df_control = 2
-    const df_treatment = 3
-        
-    const index = keys.findIndex((value, key) => {
-        if ( value[0] === df_control && 
-             value[1] === df_treatment ) {
-            return key
-        } 
-    });
-    
-    return f_stat > values[index] 
-         ? descriptives.variance = 'unequal' 
-         : descriptives.variance = 'equal'    
-}
-console.log(variance())
-// it must get each samples df
-// needs to round df samples to closest
-// if greater than 1000, return static 
-
-
-
-
 
 const compare = (ctrl, trtmt) => {
 
-
+// Deep comparison that checks the dataset and returns the correct value from f-table
     const f_test = (ctrl, trtmt) => {
         const f_stat = sd(ctrl) > sd(trtmt)
             ? sd(ctrl) / sd(trtmt) 
@@ -133,17 +68,15 @@ const compare = (ctrl, trtmt) => {
         trtmt.df = descriptives(trtmt).df
         
         const index = keys.findIndex((value, key) => {
-            if (
-              value[0] === ctrl.df && 
-              value[1] === trtmt.df
-            ) {
+            if ( value[0] === ctrl.df && 
+                 value[1] === trtmt.df ) {
                 return key
             }
         })
             
-        return f_stat < values[index]
-            ? descriptives.variance = 'equal'
-            : descriptives.variance = 'unequal'
+        return f_stat > values[index]
+            ? descriptives.variance = 'unequal'
+            : descriptives.variance = 'equal'
     }
     
 
@@ -182,7 +115,7 @@ const variance = sample => {
     const conversion = sum(sample) ** 2 / sample.length
     const indices = sample.map(value => value ** 2)
     
-    return (sum(indices) - conversion) / (sample.length -1)
+    return ((sum(indices) - conversion) / (sample.length -1))
 }
 
 
@@ -199,8 +132,9 @@ const t_test = (ctrl, trtmt) => {
                 (((sd_util(ctrl) ** 2) / descriptives(ctrl).df) +
                 ((sd_util(trtmt) ** 2) / descriptives(trtmt).df)))
     
-    return t_stat < t_table[_df]
-        ? false + ' accept null'
-        : true + ' reject null'
+    return t_stat > t_table[_df]
+        ? true + ' reject null'
+        : false + ' accept null'
+        
 }
 

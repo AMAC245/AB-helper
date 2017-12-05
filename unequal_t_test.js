@@ -24,4 +24,4 @@ const compare = (control, treatment) => ({
 })
 console.log(compare(x,y))
 
-// ADD ERROR HANDLERS FOR T_TABLE _df over 120
+// ADD ERROR HANDLERS FOR T_TABLE _df over 120 / _df negative

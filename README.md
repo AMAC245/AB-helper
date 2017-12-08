@@ -9,3 +9,5 @@ const treatment = [6,7,8,9,10]
 
 compare(control, treatment)
 ```
+
+In addition, ```descriptives()``` is a factory function that allows you to insert single samples and retrieve common descriptive statistics which can be used in further analyses. Most notably, it filters for outliers that may exist in your dataset which is critical for forming more accurate representations of your data and subsequent conclusions. 

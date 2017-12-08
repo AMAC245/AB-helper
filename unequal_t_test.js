@@ -25,3 +25,24 @@ const compare = (control, treatment) => ({
 console.log(compare(x,y))
 
 // ADD ERROR HANDLERS FOR T_TABLE _df over 120 / _df negative
+
+
+
+
+
+ let _df = (sd_util(ctrl) + sd_util(trtmt)) ** 2,
+     _df = _df / ((sd_util(ctrl)  ** 2) / (descriptives(ctrl).df) +
+                 ((sd_util(trtmt) ** 2) / (descriptives(trtmt).df)),
+                  
+     _df < 0
+        ? _df = Math.round(Math.abs(_df))
+        : _df = Math.round(_df)
+  
+                  
+  const dfx = (sd_util(ctrl) + sd_util(trtmt)) ** 2
+  const dfy = ((sd_util(ctrl)  ** 2) / (descriptives(ctrl).df) + 
+              ((sd_util(trtmt) ** 2) / (descriptives(trtmt).df))
+        
+  const dfr = dfx / dfy < 0
+               ? 
+               
